@@ -25,7 +25,7 @@ export default function CardDemo({ imgUrl, title, cta, href }: { imgUrl: string,
                 </CardDescription>
             </CardHeader>
             <CardContent>
-                <div className="relative z-10">
+                <div className="relative z-10 hidden sm:block">
                     <Lens hovering={hovering} setHovering={setHovering} lensSize={200} zoomFactor={1.5} position={{ x: 200, y: 150 }} isStatic={false}>
                         <Link href={href}>
                             <Image
@@ -43,7 +43,6 @@ export default function CardDemo({ imgUrl, title, cta, href }: { imgUrl: string,
                         }}
                         className="py-4 relative z-20"
                     >
-
                         <div className="text">
                             <h1 className="scroll-m-20 text-3xl font-semibold tracking-tight mb-4">{title}</h1>
                             <Link href={href} className="cursor-pointer">
@@ -53,6 +52,25 @@ export default function CardDemo({ imgUrl, title, cta, href }: { imgUrl: string,
                             </Link>
                         </div>
                     </motion.div>
+                </div>
+                <div className="relative z-10 block sm:hidden">
+                    <Link href={href}>
+                        <Image
+                            src={imgUrl}
+                            alt="Gallery Image"
+                            width={400}
+                            height={200}
+                            className="w-full h-auto object-cover mb-4"
+                        />
+                    </Link>
+                    <div className="text">
+                        <h1 className="scroll-m-20 text-3xl font-semibold tracking-tight mb-4">{title}</h1>
+                        <Link href={href} className="cursor-pointer">
+                            <Button variant={"outline"} className="px-8 py-5 uppercase tracking-wider text-lg font-light cursor-pointer rounded-sm">
+                                {cta}
+                            </Button>
+                        </Link>
+                    </div>
                 </div>
             </CardContent>
         </Card>
