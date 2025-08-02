@@ -11,10 +11,10 @@ const Shop = () => {
     const getData = async () => {
       try {
         const res = await axios.get('/api/get-all-images');
-        console.log('Fetched paintings:', res.data);
+
         setPaintings(res.data);
       } catch (error) {
-        console.error('Error fetching paintings:', error);
+        console.error('Error fetching paintings, shop:', error);
       }
     };
     getData();

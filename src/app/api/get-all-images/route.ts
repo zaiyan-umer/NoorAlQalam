@@ -1,8 +1,10 @@
 import Image from '@/lib/models/image';
 import { NextResponse } from 'next/server';
+import { dbConnect } from '@/lib/db-connect/db';
 
 export async function GET() {
   try {
+    await dbConnect();
     const images = await Image.find();
     return NextResponse.json(images);
   } catch (error) {
