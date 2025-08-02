@@ -6,9 +6,11 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function POST(request: NextRequest){
     try{
         await dbConnect();
+        
         const body = await request.json();
+        
         const { title, description, imgUrl, price, category, isFeatured } = body;
-
+        
         const newImage = new Image({
             title,
             description,

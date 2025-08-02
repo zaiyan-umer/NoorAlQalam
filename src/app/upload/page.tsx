@@ -42,8 +42,7 @@ const UploadImageForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form Data:", formData);
-
+    
     try {
       const response = await axios.post("/api/upload", JSON.stringify(formData));
 
