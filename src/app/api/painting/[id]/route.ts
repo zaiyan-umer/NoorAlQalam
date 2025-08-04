@@ -3,8 +3,9 @@ import Image from '@/lib/models/image';
 import { NextRequest, NextResponse } from 'next/server';
 import { dbConnect } from '@/lib/db-connect/db';
 
-export async function GET(request: NextRequest, context: { params: { id: string } }) {
-  const { id } = context.params;
+export async function GET(request: NextRequest, context: unknown) {
+  const { params } = context as { params: { id: string } };
+    const { id } = params;
 
   if (!mongoose.isValidObjectId(id)) {
     return NextResponse.json(
