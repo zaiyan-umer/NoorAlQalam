@@ -4,7 +4,7 @@ import React from 'react';
 import type { Painting } from '@/types/painting';
 
 interface Props {
-    params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 async function fetchImage(id: string): Promise<Painting | null> {
@@ -18,10 +18,10 @@ async function fetchImage(id: string): Promise<Painting | null> {
     return res.json();
 }
 
-export default async function PaintingPage({ params }: Props) {
-    const { id } = params;
-    const image = await fetchImage(id);
 
+export default async function PaintingPage({ params }: Props) {
+  const { id } = await params;
+  const image = await fetchImage(id);
     if (!image) {
         return (
             <div className="p-6 flex flex-col items-center">
@@ -51,22 +51,22 @@ export default async function PaintingPage({ params }: Props) {
                 </div>
 
                 {/* Details */}
-                <div className="flex flex-col justify-between p-8">
+                <div className="flex flex-col justify-between">
                     <div>
                         <h1 className="text-3xl md:text-5xl font-bold mb-2 sm:mb-6">
                             {image.title || 'Untitled Painting'}
                         </h1>
+
                         {image.price && (
                             <div className="text-xl md:text-2xl font-semibold text-indigo-600 mb-3 md:mb-8">
                                 {image.price}
                             </div>
                         )}
+
                         <div className="mb-8 flex sm:items-center gap-4">
                             <div className="flex items-center gap-4">
                                 <div
-                                    className={`font-medium ${image.isFeatured === false
-                                        ? 'text-red-600'
-                                        : 'text-green-600'
+                                    className={`font-medium ${image.isFeatured === false ? 'text-red-600' : 'text-green-600'
                                         }`}
                                 >
                                     {image.isFeatured === false ? 'Sold out' : 'Available'}
@@ -87,6 +87,7 @@ export default async function PaintingPage({ params }: Props) {
                                 )}
                             </div>
                         </div>
+
                         {image.description && (
                             <p className="mt-2 text-gray-700 dark:text-gray-300 leading-relaxed text-lg ">
                                 {image.description}
@@ -97,4 +98,6 @@ export default async function PaintingPage({ params }: Props) {
             </div>
         </div>
     );
+
+
 }
