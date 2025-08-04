@@ -6,4 +6,5 @@ export interface Painting {
   price?: string;
   images?: string[];
   isFeatured: boolean;
+  _id?: string;
 }

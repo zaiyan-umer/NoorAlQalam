@@ -19,6 +19,7 @@ const PaintingCardComponent: React.FC<Props> = ({ painting, shop = false }) => {
           style={{ objectFit: 'cover' }}
           className="w-full hover:scale-105 transition-transform duration-300 cursor-pointer"
           loading="lazy"
+          onClick={() => window.location.href = `/painting/${painting._id}`}
         />
       </div>
       <div className="p-4 flex flex-col items-center">
